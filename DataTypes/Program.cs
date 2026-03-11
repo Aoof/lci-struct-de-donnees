@@ -21,6 +21,8 @@ class Program
         stack.Display();
 
         stack.Pop();
+        stack.Pop();
+        stack.Pop();
 
         stack.Display();
 
