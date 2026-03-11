@@ -64,6 +64,7 @@ public class Queue<T> : IQueue<T>
     {
         head = null;
         tail = null;
+	count = 0;
         // Garbage collector will do it I think
     }
 
