@@ -5,12 +5,12 @@ public class Queue<T> : IQueue<T>
     public class Node
     {
         public T value;
-        public Node? prev;
+        public Node? next;
 
-        public Node(T value = default!, Node? prev = null)
+        public Node(T value = default!, Node? next = null)
         {
             this.value = value;
-            this.prev = prev;
+            this.next = next;
         }
     }
 
@@ -21,8 +21,14 @@ public class Queue<T> : IQueue<T>
     public void Enqueue(T element)
     {
         Node newElem = new(element);
-        tail!.prev = newElem;
-        tail = newElem;
+
+        if (count == 0) head = tail = newElem;
+        else            
+        {
+            tail!.next = newElem;
+            tail = newElem;
+        }
+
         count++;
     }
 
@@ -30,7 +36,7 @@ public class Queue<T> : IQueue<T>
     {
         if (count == 0) throw new IndexOutOfRangeException("Cannot dequeue an empty queue");
         T res = head!.value;
-        head = head.prev;
+        head = head!.next;
         count--;
         return res;
     }
@@ -49,7 +55,7 @@ public class Queue<T> : IQueue<T>
         {
             if (curr!.value!.Equals(element))
                 return true;
-            curr = head!.prev;
+            curr = head!.next;
         }
         return false;
     }
@@ -68,7 +74,7 @@ public class Queue<T> : IQueue<T>
         while (cur != null)
         {
             Console.WriteLine("|   " + cur.value + "  |");
-            cur = cur.prev;
+            cur = cur.next;
         }   
     }
 

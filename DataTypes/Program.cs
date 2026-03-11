@@ -29,5 +29,34 @@ class Program
         stack.Clear();
 
         stack.Display();
+
+        Console.WriteLine("Queue --------------------");
+
+        Queue<int> queue = new();
+
+        queue.Enqueue(10);
+        queue.Enqueue(20);
+        queue.Enqueue(30);
+        queue.Enqueue(40);
+        queue.Enqueue(50);
+
+        queue.Display();
+
+        Console.WriteLine("Dequeued: " + queue.Dequeue());
+        Console.WriteLine("Dequeued: " + queue.Dequeue());
+
+        queue.Display();
+
+        Console.WriteLine("Peek: " + queue.Peek());
+
+        Console.WriteLine("Contains 20: " + queue.Contains(20));
+        Console.WriteLine("Contains 100: " + queue.Contains(100));
+
+        Console.WriteLine("Count: " + queue.Count());
+
+        queue.Clear();
+
+        queue.Display();
+        Console.WriteLine("Count after clear: " + queue.Count());
     }
 }
