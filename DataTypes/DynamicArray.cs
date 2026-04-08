@@ -1,5 +1,8 @@
 namespace DataTypes;
 
+using System;
+using System.Collections.Generic;
+
 public class DynamicArray<T>
 {
     private T[] array;

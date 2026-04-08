@@ -2,3 +2,13 @@
 [Oo]bj/
 **/[Bb]in/**
 **/[Oo]bj/**
+
+# Python plotting tooling
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Generated benchmark artifacts and plots
+BenchmarkDotNet.Artifacts/
+benchmark-plots/

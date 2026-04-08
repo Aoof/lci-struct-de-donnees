@@ -10,7 +10,7 @@ public interface IStack<T>
 
     public bool Contains(T element);
 
-    public int Count();
+    public int Count { get; }
 
     public void Clear();
 

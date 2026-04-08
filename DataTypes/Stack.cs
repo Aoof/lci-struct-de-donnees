@@ -1,21 +1,26 @@
 namespace DataTypes;
 
-class Stack<T> : IStack<T>
+using System;
+using System.Collections.Generic;
+
+public class Stack<T> : IStack<T>
 {
     public class Node
     {
         public T value;
-        public Node? prev;
-        public Node(T value = default!, Node? prev = null)
+        public Node? next;
+        public Node(T value = default!, Node? next = null)
         {
             this.value = value;
-            this.prev = prev;
+            this.next = next;
         }
     }
 
     Node? top;
     
     int count = 0;
+
+    public int Count => count;
 
     public void Push(T element)
     {
@@ -29,7 +34,7 @@ class Stack<T> : IStack<T>
             throw new IndexOutOfRangeException("Can't pop an empty Stack...");
         
         T response = top.value;
-        top = top.prev;
+        top = top.next;
         count--;
         return response;
     }
@@ -47,21 +52,17 @@ class Stack<T> : IStack<T>
         Node? cur = top;
         while (cur != null)
         {
-            if (cur!.value!.Equals(element))
+            if (EqualityComparer<T>.Default.Equals(cur.value, element))
                 return true;
-            cur = cur.prev;
+            cur = cur.next;
         }
         return false;
-    }
-
-    public int Count()
-    {
-        return count;
     }
 
     public void Clear()
     {
         top = null;
+        count = 0;
     }
 
     public void Display()
@@ -71,7 +72,7 @@ class Stack<T> : IStack<T>
         while (cur != null)
         {
             Console.WriteLine("|   " + cur.value + "  |");
-            cur = cur.prev;
+            cur = cur.next;
         }
     }
 }

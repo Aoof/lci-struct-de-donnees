@@ -1,5 +1,8 @@
 namespace DataTypes;
 
+using System;
+using System.Collections.Generic;
+
 public class Queue<T> : IQueue<T>
 {
     public class Node
@@ -17,6 +20,8 @@ public class Queue<T> : IQueue<T>
     Node? head;
     Node? tail;
     int count = 0;
+
+    public int Count => count;
 
     public void Enqueue(T element)
     {
@@ -38,6 +43,8 @@ public class Queue<T> : IQueue<T>
         T res = head!.value;
         head = head!.next;
         count--;
+        if (count == 0)
+            tail = null;
         return res;
     }
 
@@ -53,9 +60,9 @@ public class Queue<T> : IQueue<T>
         Node? curr = head!;
         while (curr != null)
         {
-            if (curr!.value!.Equals(element))
+            if (EqualityComparer<T>.Default.Equals(curr.value, element))
                 return true;
-            curr = head!.next;
+            curr = curr.next;
         }
         return false;
     }
@@ -77,10 +84,5 @@ public class Queue<T> : IQueue<T>
             Console.WriteLine("|   " + cur.value + "  |");
             cur = cur.next;
         }   
-    }
-
-    public int Count()
-    {
-        return count;
     }
 }
